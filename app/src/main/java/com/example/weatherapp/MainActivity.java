@@ -144,11 +144,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             Helper http = new Helper();
             stream = http.getHTTPData(urlString);
+            if (stream == null)
+                Log.println(Log.ERROR, "Error", "Stream is null");
             return stream;
         }
 
         @Override
         protected void onPostExecute(String s) {
+            s.contains("City found");
             super.onPostExecute(s);
             if(s.contains("Error: Not found city")){
                 pd.dismiss();
